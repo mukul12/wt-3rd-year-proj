@@ -496,31 +496,8 @@ value="GU2N92K6UH22" /></div>
                                   <span class="help-block"></span>
                               </div>
                               
-                              <div>
-                              <table cellspacing="0" border="0" cellpadding="8" style="background-color:#ffcc66;"" class="col-6-l" >
-                                      <tr><td colspan="2" style="padding-bottom:1px;">
-                      
-                                      <tr valign="bottom"><td>
-                                      <a href="#" onclick="return ReloadCaptchaImage('CaptchaImage');"><i class="icon-repeat"</i></a><br />
-                                      <i>Enter Captcha code</i><br />
-                                      <input id="skip_CaptchaCode" name="skip_CaptchaCode" type="text"
-                                      style="width:130px; height:48px; font-size:38px;" maxlength="6" /><br />
-                                      </tr>
-                                      <a href="http://www.snaphost.com/captcha/ReadyForms/SignUpForm.aspx"><img id="CaptchaImage"
-                                      alt="registration form example" style="border-width:0px;"
-                                      title="registration form example"
-                                      src="http://www.SnapHost.com/captcha/CaptchaImage.aspx?id=GU2N92K6UH22" /><br></a>
-                                      </td><tr>  <br /></tr></table></div>
-                                      <script type="text/javascript">
-                                      function ReloadCaptchaImage(captchaImageId) {
-                                      var obj = document.getElementById(captchaImageId);
-                                      var src = obj.src;
-                                      var date = new Date();
-                                      var pos = src.indexOf('&rad=');
-                                      if (pos >= 0) { src = src.substr(0, pos); }
-                                      obj.src = src + '&rad=' + date.getTime();
-                                      return false; }
-                                      </script>
+                              
+                              
                               <button type="submit" class="btn btn-success btn-block">Done</button>
                           </form>
                       </div>
@@ -590,14 +567,17 @@ $(document).ready(function(){
                   <div class="col-xs-6">
                       <div class="well" style="background:rgba(90, 1, 65,0.44);">
                           <form id="myform" method="POST" action="home.php" accept="image/gif, image/jpeg, image/png, image/jpg" method="post">
-                           <div class="form-group"> <input type="hidden" id="skip_WhereToSend" name="skip_WhereToSend"
+                         
+
+                         <!--  <div class="form-group"> <input type="hidden" id="skip_WhereToSend" name="skip_WhereToSend"
 value="mmmpuranik@gmail.com" />
-<input type="hidden" id="skip_Subject" name="skip_Subject"
+  <input type="hidden" id="skip_Subject" name="skip_Subject"
 value=" CAPTCHA" />
 <input type="hidden" id="skip_WhereToReturn" name="skip_WhereToReturn"
 value="index.php" />
 <input type="hidden" id="skip_SnapHostID" name="skip_SnapHostID"
-value="GU2N92K6UH22" /></div>
+value="GU2N92K6UH22" />
+</div>-->
                            
                                   
                               <div class="form-group">
@@ -659,32 +639,13 @@ value="GU2N92K6UH22" /></div>
                                   <input type="file" name="image_1" id="image_1">
                                   <span class="help-block"></span>
                               </div>
-                              
-                              <div>
-                              <table cellspacing="0" border="0" cellpadding="8" style="background-color:#ffcc66;"" class="col-6-l" >
-                                      <tr><td colspan="2" style="padding-bottom:1px;">
-                      
-                                      <tr valign="bottom"><td>
-                                      <a href="#" onclick="return ReloadCaptchaImage('CaptchaImage');"><i class="icon-repeat"</i></a><br />
-                                      <i>Enter Captcha code</i><br />
-                                      <input id="skip_CaptchaCode" name="skip_CaptchaCode" type="text"
-                                      style="width:130px; height:48px; font-size:38px;" maxlength="6" /><br />
-                                      </tr>
-                                      <a href="http://www.snaphost.com/captcha/ReadyForms/SignUpForm.aspx"><img id="CaptchaImage"
-                                      alt="registration form example" style="border-width:0px;"
-                                      title="registration form example"
-                                      src="http://www.SnapHost.com/captcha/CaptchaImage.aspx?id=GU2N92K6UH22" /><br></a>
-                                      </td><tr>  <br /></tr></table></div>
-                                      <script type="text/javascript">
-                                      function ReloadCaptchaImage(captchaImageId) {
-                                      var obj = document.getElementById(captchaImageId);
-                                      var src = obj.src;
-                                      var date = new Date();
-                                      var pos = src.indexOf('&rad=');
-                                      if (pos >= 0) { src = src.substr(0, pos); }
-                                      obj.src = src + '&rad=' + date.getTime();
-                                      return false; }
-                                      </script>
+                           <p><img src="imagebuilder.php" border="1">  </p>
+      <p>Please enter the code shown above and click Submit.<br>
+        <input MAXLENGTH=8 SIZE=8  id="userstring" name="userstring" type="text" value="">
+        <br>
+                                     
+
+                                      
                               <button type="submit" class="btn btn-success btn-block">Done</button>
                           </form>
                       </div>
