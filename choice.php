@@ -1,8 +1,14 @@
 <?php
 session_start();
+
 $email=$_SESSION['email'];
-
-
+if(is_null($email))
+{
+    ob_start();
+    header('Location:index.php');
+    ob_end_flush();
+    die();
+}
 ?>
 <html lang="en">
 
@@ -270,17 +276,15 @@ $email=$_SESSION['email'];
                     <li>
                         <a class="page-scroll" href="index.php">HOME</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Product</a>
-                    </li>
+            
                     <li>
                         <a class="page-scroll" href="#about">contact us</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Team</a>
+                    <span style="position:relative;top:17px;left:7px" class="glyphicon glyphicon-shopping-cart"></span>
                     </li>
                     <li>
-                        <a class="page-scroll" href="contactus.html">Contact</a>
+                        <a class="page-scroll" href="mycart.php">Cart</a>
                     </li>
                     <li style="position: relative; top:15px; font-size: 15px; color: white;"><b>Welcome</b> '.$email.'</li>
                      <li>

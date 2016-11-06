@@ -18,13 +18,12 @@ $email=$_SESSION['email'];
     .random_class{
 
     }
-
 </style>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Products for you.</title>
+    <title>HardWare: Shopping Cart</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -45,6 +44,7 @@ $email=$_SESSION['email'];
 
 
     <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
@@ -53,7 +53,7 @@ $email=$_SESSION['email'];
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 </head>
 <body>
 
@@ -111,7 +111,7 @@ $email=$_SESSION['email'];
 <!--TEST HERE ______________________________________________________________________________________________-->
 
 <div class="row">
-     <div class="span12">
+     <div class="col-md-12">
 
      <?php
      $connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
@@ -143,7 +143,7 @@ $numrows=mysqli_num_rows($executequery);
                 <th>Remove</th>
                 <th>Image</th>
                 <th>Product Name</th>
-                <th>Model</th>
+                <th>Reference No:</th>
                 <th>Quantity</th>
                 <th>Unit Price</th>
                 <th>Total</th>
@@ -155,10 +155,11 @@ $numrows=mysqli_num_rows($executequery);
              for($i=0;$i<$numrows;$i++){
             echo '
               <tr>
-                <td class=""><input value="option1" id="optionsCheckbox" type="checkbox"></td>
+                <td class=""><button class="btn bg-info" name="'.$cartsolutions[$i]['cartid'].'" id="check_button"><i class="fa fa-check-circle-o"></i></button></td>
+
                 <td class="muted center_text"><a href="#"><img class="img-responsive" style="height:250px;" src="'.$cartsolutions[$i]['imageid'].'.jpeg"></a></td>
                 <td>'.$cartsolutions[$i]['oprocessor'].'<br>'.$cartsolutions[$i]['oram'].'<br>'.$cartsolutions[$i]['ohdd'].'<br>'.$cartsolutions[$i]['omotherboard'].'<br>'.$cartsolutions[$i]['ogpu'].'</td>
-                <td>Order No: '.($i+1).'</td>
+                <td>'.($cartsolutions[$i]['cartid']+1000).'</td>
                 <td>1</td>
                 <td>'.$cartsolutions[$i]['ordercost'].'</td>
                 <td>'.$cartsolutions[$i]['ordercost'].'</td>
@@ -222,16 +223,25 @@ $numrows=mysqli_num_rows($executequery);
           </div>
 
           <div class="row">
-          <div class="col-md-5">
-            <button class="btn btn-primary" type="submit">Update</button>
+          <div class="col-md-5 col-xs-6">
+            <a class="btn btn-primary" id="Update" name="Update">Update</a>
             </div>        
-            <div class="col-md-2">
-            <button class="btn btn-primary" type="submit">Continue shopping</button>
+            <div class="col-md-2 col-md-5 col-xs-6">
+            <a href="choice.php" class="btn btn-primary" id="shop" name="shop">Continue shopping</a>
             </div>        
-            <div class="col-md-5">
-            <a href="checkout.html" class="btn btn-primary pull-right">Checkout</a>
-            </div>
+            
           </div>
+          <br>
+          <br>
+        
+          <hr>
+          <div class="row">
+          <div class="col-md-7 col-xs-12">
+            <a href="placeorder.php" class="btn btn-primary pull-right" style="height:50px; width:200px;font-size:22px">Checkout</a>
+           
+            </div>
+            </div>
+            
         </fieldset>
         </form>
 
@@ -256,32 +266,6 @@ $numrows=mysqli_num_rows($executequery);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                </div>
@@ -293,7 +277,17 @@ $numrows=mysqli_num_rows($executequery);
 
     </div>
 </div>
-
+ <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br> <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
 </body>
 
@@ -314,77 +308,107 @@ $numrows=mysqli_num_rows($executequery);
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="assets/js/light-bootstrap-dashboard.js"></script>
+    <!-- <script src="assets/js/light-bootstrap-dashboard.js"></script> -->
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
 <script type="text/javascript">
-    $('#buy0').on('click', function (){
-    var ram="<?php echo $rsolutions[$ram_no1]['rname'];?>";
-    var proc="<?php echo $psolutions[$proc_no1]['pname'];?>";
-    var hdd="<?php echo $hsolutions[$hdd_no1]['hname'];?>";
-    var mb="<?php echo $msolutions[$mb_no1]['mname'];?>";
-    var gpu="<?php echo $gsolutions[$gpu_no1]['gname'];?>";
-    var cost=<?php echo $cost1;?>;
-    console.log(ram+proc+hdd+mb+gpu+cost);
-    var urlString="ram="+ram+"&processor="+proc+"&hdd="+hdd+"&mb="+mb+"&gpu="+gpu+"&cost="+cost;
-    console.log("this is urlString:"+urlString);
-    var a=confirm("Do you want to buy?");
-  if(a==1){
-$.ajax
-  ({
-  url: "getjsondata.php",
+//     $('#buy0').on('click', function (){
+//     var ram="<?php //echo $rsolutions[$ram_no1]['rname'];?>";
+//     var proc="<?php //echo $psolutions[$proc_no1]['pname'];?>";
+//     var hdd="<?php //echo $hsolutions[$hdd_no1]['hname'];?>";
+//     var mb="<?php //echo $msolutions[$mb_no1]['mname'];?>";
+//     var gpu="<?php //echo $gsolutions[$gpu_no1]['gname'];?>";
+//     var cost=<?php //echo $cost1;?>;
+//     console.log(ram+proc+hdd+mb+gpu+cost);
+//     var urlString="ram="+ram+"&processor="+proc+"&hdd="+hdd+"&mb="+mb+"&gpu="+gpu+"&cost="+cost;
+//     console.log("this is urlString:"+urlString);
+//     var a=confirm("Do you want to buy?");
+//   if(a==1){
+// $.ajax
+//   ({
+//   url: "getjsondata.php",
+
+//   type : "POST",
+//   cache : false,
+//   data : urlString,
+//   success: function(response)
+//   {
+//     alert(response);
+//     //window.location="getjsondata.php";
+//   },
+//   complete: function(response)
+//   {
+//     alert("In complete");
+//   },
+//   error: function(response)
+//   {
+//     alert(response+"TERA AJAX FAILED HAI BOSS");
+//   }
+
+//   });
+// //window.location.href=window.location.href;
+// }
+// });
+
+
+// $('#buy1').on('click', function (){
+//   var ram="<?php //echo $rsolutions[$ram_no]['rname'];?>";
+//   var proc="<?php //echo $psolutions[$proc_no]['pname'];?>";
+//   var hdd="<?php //echo $hsolutions[$hdd_no]['hname'];?>";
+//   var mb="<?php //echo $msolutions[$mb_no]['mname'];?>";
+//   var gpu="<?php //echo $gsolutions[$gpu_no]['gname'];?>";
+//   var cost=<?php //echo $cost;?>;
+//   console.log(ram+proc+hdd+mb+gpu+cost);
+//   var urlString="ram="+ram+"&processor="+proc+"&hdd="+hdd+"&mb="+mb+"&gpu="+gpu+"&cost="+cost;
+//   console.log("this is urlString:"+urlString);
+//   var a=confirm("Do you want to buy?");
+//   if(a==1){
+// $.ajax
+//   ({
+//   url: "getjsondata.php",
+
+//   type : "POST",
+//   cache : false,
+//   data : urlString,
+//   success: function(response)
+//   {
+//   alert(response);
+//   //window.location="getjsondata.php";
+//   },
+//   complete: function(response)
+//   {
+//     alert("In complete");
+//   },
+//   error: function(response)
+//   {
+//     alert(response+"TERA AJAX FAILED HAI BOSS");
+//   }
+
+//   });
+// //window.location.href=window.location.href;
+// }
+// });
+    
+  $(document).on('click', '#check_button', function(e){
+      var id= parseInt(e.currentTarget.name);
+      console.log(id);
+      var urlString="id="+id;
+      $.ajax
+      ({
+  url: "remove.php",
 
   type : "POST",
   cache : false,
   data : urlString,
   success: function(response)
   {
-    alert(response);
-    //window.location="getjsondata.php";
-  },
-  complete: function(response)
-  {
-    alert("In complete");
-  },
-  error: function(response)
-  {
-    alert(response+"TERA AJAX FAILED HAI BOSS");
-  }
-
-  });
-//window.location.href=window.location.href;
-}
-});
-
-
-$('#buy1').on('click', function (){
-  var ram="<?php echo $rsolutions[$ram_no]['rname'];?>";
-  var proc="<?php echo $psolutions[$proc_no]['pname'];?>";
-  var hdd="<?php echo $hsolutions[$hdd_no]['hname'];?>";
-  var mb="<?php echo $msolutions[$mb_no]['mname'];?>";
-  var gpu="<?php echo $gsolutions[$gpu_no]['gname'];?>";
-  var cost=<?php echo $cost;?>;
-  console.log(ram+proc+hdd+mb+gpu+cost);
-  var urlString="ram="+ram+"&processor="+proc+"&hdd="+hdd+"&mb="+mb+"&gpu="+gpu+"&cost="+cost;
-  console.log("this is urlString:"+urlString);
-  var a=confirm("Do you want to buy?");
-  if(a==1){
-$.ajax
-  ({
-  url: "getjsondata.php",
-
-  type : "POST",
-  cache : false,
-  data : urlString,
-  success: function(response)
-  {
-  alert(response);
+  //alert(response);
   //window.location="getjsondata.php";
   },
   complete: function(response)
   {
-    alert("In complete");
+    alert("Removed");
   },
   error: function(response)
   {
@@ -392,9 +416,9 @@ $.ajax
   }
 
   });
-//window.location.href=window.location.href;
-}
-});
+  });
+
+  
     
 </script>
 

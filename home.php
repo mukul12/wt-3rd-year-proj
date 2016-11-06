@@ -289,7 +289,7 @@ $numrows=mysqli_num_rows($executequery);
 <div class="container-fluid"><?php
 $id = rand(2,6); 
 $cost=$psolutions[$proc_no]['pprice']+$gsolutions[$gpu_no]['gprice']+$msolutions[$mb_no]['mprice']+$hsolutions[$hdd_no]['hprice']+$rsolutions[$ram_no]['rprice'];
-echo $cost;
+//echo $cost;
 $cost1=$cost;
 for($i=0;$i<2;$i++) {
 	$cost=0;
@@ -309,7 +309,7 @@ $mb_no= rand(0,$mb_no);
 	$gpu_no=rand(0,$gpu_no);
 	$id=$id-1;
 }
-echo $cost;
+//echo $cost;
 ?>
 </div>
 </div>
@@ -424,12 +424,12 @@ $.ajax
   data : urlString,
   success: function(response)
   {
- 	alert(response);
+ 	//alert(response);
  	//window.location="getjsondata.php";
   },
   complete: function(response)
   {
-  	alert("In complete");
+  	alert("Done");
   },
   error: function(response)
   {
@@ -464,12 +464,12 @@ $.ajax
   data : urlString,
   success: function(response)
   {
-  alert(response);
+  //alert(response);
   //window.location="getjsondata.php";
   },
   complete: function(response)
   {
-    alert("In complete");
+    alert("Done");
   },
   error: function(response)
   {
