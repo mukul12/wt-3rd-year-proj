@@ -356,7 +356,7 @@ label:hover:before {
 	<div class="login-form-1">
 		<form id="forgot-password-form" class="text-left"  action="mail.php" method="POST">
 			<div class="etc-login-form">
-				<p>When you fill in your registered email address, you will be sent your passowrd on your given email id.</p>
+				<p>When you fill in your registered email address, you will be sent your password on your given email id.</p>
 			</div>
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">

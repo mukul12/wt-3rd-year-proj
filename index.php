@@ -87,7 +87,7 @@ $email=$_SESSION['email'];
                         <a class="" href="index.php">home</a>
                     </li>
                     <li>
-                        <a class="" href="#portfolio">Product</a>
+                        <a class="" href="choice.php">Product</a>
                     </li>
                     <li>
                         <a class="" href="contactus.php">contact us</a>

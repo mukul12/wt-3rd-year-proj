@@ -1,6 +1,15 @@
 <?php
 session_start();
 $email=$_SESSION['email'];
+
+if(is_null($email))
+{   echo "<script>alert('Please Login!');</script>";
+ echo "<script>window.location='index.php'</script>";
+    ob_start();
+    // header('Location:index.php');
+    ob_end_flush();
+    die();
+}
 ?>
 
 <!doctype html>
@@ -153,7 +162,21 @@ $numrows=mysqli_num_rows($executequery);
             <?php 
             $sum=0;
              for($i=0;$i<$numrows;$i++){
+              if(is_null($cartsolutions[$i]['oprocessor'])){
             echo '
+              <tr>
+                <td class=""><button class="btn bg-info" name="'.$cartsolutions[$i]['cartid'].'" id="check_button"><i class="fa fa-check-circle-o"></i></button></td>
+
+                <td class="muted center_text"><a href="#"><img class="img-responsive" style="height:250px;" src="limg/'.$cartsolutions[$i]['imageid'].'.jpeg"></a></td>
+                <td>'.$cartsolutions[$i]['oprocessor'].'<br>'.$cartsolutions[$i]['oram'].'<br>'.$cartsolutions[$i]['ohdd'].'<br>'.$cartsolutions[$i]['omotherboard'].'<br>'.$cartsolutions[$i]['ogpu'].'</td>
+                <td>'.($cartsolutions[$i]['cartid']+1000).'</td>
+                <td>1</td>
+                <td>'.$cartsolutions[$i]['ordercost'].'</td>
+                <td>'.$cartsolutions[$i]['ordercost'].'</td>
+              </tr>';
+              $sum=$sum+$cartsolutions[$i]['ordercost'];}
+              else{
+                echo '
               <tr>
                 <td class=""><button class="btn bg-info" name="'.$cartsolutions[$i]['cartid'].'" id="check_button"><i class="fa fa-check-circle-o"></i></button></td>
 
@@ -164,7 +187,8 @@ $numrows=mysqli_num_rows($executequery);
                 <td>'.$cartsolutions[$i]['ordercost'].'</td>
                 <td>'.$cartsolutions[$i]['ordercost'].'</td>
               </tr>';
-              $sum=$sum+$cartsolutions[$i]['ordercost'];}   ?>                    
+              $sum=$sum+$cartsolutions[$i]['ordercost'];
+                }}   ?>                    
               <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -409,6 +433,7 @@ $numrows=mysqli_num_rows($executequery);
   complete: function(response)
   {
     alert("Removed");
+    response;
   },
   error: function(response)
   {
@@ -416,6 +441,9 @@ $numrows=mysqli_num_rows($executequery);
   }
 
   });
+window.location="mycart.php";
+
+location.reload();
   });
 
   

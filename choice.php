@@ -3,9 +3,10 @@ session_start();
 
 $email=$_SESSION['email'];
 if(is_null($email))
-{
+{   echo "<script>alert('Please Login!');</script>";
+ echo "<script>window.location='index.php'</script>";
     ob_start();
-    header('Location:index.php');
+    // header('Location:index.php');
     ob_end_flush();
     die();
 }
@@ -450,56 +451,56 @@ if(is_null($email))
               <div class="row">
                   <div class="col-xs-6">
                       <div class="well" style="background:rgba(90, 1, 65,0.44);">
-                          <form id="myform" method="POST" action="homelaptop.php" accept="image/gif, image/jpeg, image/png, image/jpg" method="post">
-                           <div class="form-group"> <input type="hidden" id="skip_WhereToSend" name="skip_WhereToSend"
+                          <form id="myform" method="POST" action="homelaptop.php" accept="image/gif, image/jpeg, image/png, image/jpg">
+                           <!-- <div class="form-group"> <input type="hidden" id="skip_WhereToSend" name="skip_WhereToSend"
 value="mmmpuranik@gmail.com" />
 <input type="hidden" id="skip_Subject" name="skip_Subject"
 value=" CAPTCHA" />
 <input type="hidden" id="skip_WhereToReturn" name="skip_WhereToReturn"
 value="index.php" />
 <input type="hidden" id="skip_SnapHostID" name="skip_SnapHostID"
-value="GU2N92K6UH22" /></div>
+value="GU2N92K6UH22" /></div> -->
                               <div class="form-group">
                                   <label for="model_name" class="control-label">Model</label>
-                                  <input type="text" class="form-control" id="model_name" name="model_name" value="" required="" title="Please enter the model name" placeholder="Example:Asus ROG GL752">
+                                  <input type="text" class="form-control" id="model" name="model" value="" required="" title="Please enter the model name" placeholder="Example:Asus ROG GL552VW">
                                   <span class="help-block"></span>
                               </div>
                               <div class="form-group">
-                                  <label for="Price" class="control-label">Price</label>
-                                  <input type="text" class="form-control" id="Price" name="price" value="" required="" title="" placeholder="Example: $700">
+                                  <label for="Price" class="control-label">Budget</label>
+                                  <input type="text" class="form-control" id="budget" name="budget" value="" required="" title="" placeholder="Example: Rs 20000">
                                   <span class="help-block"></span>
                               </div>
                               <div class="form-group">
                                   <label for="RAM" class="control-label">RAM</label>
-                                  <select name="RAM" value="Select RAM Size">
-                                    <option value="2 ">2 GB</option>
-                                    <option value="4 ">4 GB</option>                                 
-                                    <option value="8 ">8 GB</option>                          
-                                    <option value="16 ">16 GB</option>
-                                     <option value="32 ">32 GB</option>
+                                  <select name="ram" id="ram" value="Select RAM Size">
+                                    <option value="2">2 GB</option>
+                                    <option value="4">4 GB</option>                                 
+                                    <option value="8">8 GB</option>                          
                                   </select>
                                   <span class="help-block"></span>
                               </div>
                                <div class="form-group">
                                   <label for="HDD" class="control-label">Memory Size</label>
-                                  <select name="HDD">
-                                    <option value="1000">1 TB HDD @5600RPM</option>
-                                     <option value="1000">1 TB HDD @7200RPM</option>
-                                    <option value="2000">2 TB HDD</option>
+                                  <select name="HDD" id="HDD">
+                                    
+                                    <option value="1000">1 TB HDD @7200RPM</option>
+                                    <option value="250">250 GB SSD</option>
                                     <option value="512">512GB SSD</option>
                                     <option value="500">500 GB SSD</option>
-                                    <option value="256">256GB SSD </option>
-                                    <option value="4000">4TB HDD @7200RPM</option>
-                                    <option value="3000">3TB HDD </option>
+                                    <option value="240">240GB SSD </option>
+                                    
                                   </select>
                                   <span class="help-block"></span>
                               </div>
                               <div class="form-group">
-                                  <label for="image_1" class="control-label">Upload the bill image</label>
+                                  <label for="image_1" class="control-label">Upload the bill image, Not necessary</label>
                                   <input type="file" name="image_1" id="image_1">
                                   <span class="help-block"></span>
                               </div>
-                              
+                               <p><img src="imagebuilder.php" border="1">  </p>
+      <p>Please enter the code shown above and click Submit.<br>
+        <input MAXLENGTH=8 SIZE=8  id="userstring" name="userstring" type="text" value="">
+        <br>
                               
                               
                               <button type="submit" class="btn btn-success btn-block">Done</button>

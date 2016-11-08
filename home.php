@@ -37,6 +37,14 @@ if ($string == $userstring)
 ?>
 <?php
 $email=$_SESSION['email'];
+if(is_null($email))
+{   echo "<script>alert('Please Login!');</script>";
+ echo "<script>window.location='index.php'</script>";
+    ob_start();
+    // header('Location:index.php');
+    ob_end_flush();
+    die();
+}
 ?>
 
 <?php 

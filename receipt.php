@@ -1,7 +1,14 @@
 <?php
 session_start();
 $email=$_SESSION['email'];
-
+if(is_null($email))
+{   echo "<script>alert('Please Login!');</script>";
+ echo "<script>window.location='index.php'</script>";
+    ob_start();
+    // header('Location:index.php');
+    ob_end_flush();
+    die();
+}
 ?>
 
 <!doctype html>
@@ -52,7 +59,11 @@ $email=$_SESSION['email'];
     .random_class{
 
     }
-
+  @media print {
+   .noprint{
+      display: none !important;
+   }
+}
 
   body {
     margin-top: 50px;
@@ -112,14 +123,15 @@ if (isset($_COOKIE['action'])) {
     $hdd=$cartsolutions[$i]['ohdd'];
     $mb=$cartsolutions[$i]['omotherboard'];
     $gpu=$cartsolutions[$i]['ogpu'];
+    $meraid=$cartsolutions[$i]['cartid'];
     $qry1="INSERT INTO orders VALUES (NULL, $cost, '$ram', '$proc', '$hdd', '$mb', '$gpu',$id)";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($conn));
-    
+    $qry1="DELETE FROM cart WHERE cartid=$meraid";
     }
  $qry1="INSERT INTO orders_customer VALUES (NULL, '$fname', '$lname', '$cemail', '$address', '$contact', '$landmark',$id)";
   $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 
-    $qry1="SELECT SUM(ordercost) as SUM FROM orders WHERE userid='$id'";
+    $qry1="SELECT SUM(ordercost) as SUM FROM cart WHERE userid='$id'";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
     $row =mysqli_fetch_assoc($executequery);
     $payment=$row['SUM'];
@@ -130,7 +142,7 @@ if (isset($_COOKIE['action'])) {
 
 }
 
- $qry1="SELECT SUM(ordercost) as SUM FROM orders WHERE userid='$id'";
+ $qry1="SELECT SUM(ordercost) as SUM FROM cart WHERE userid='$id'";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
     $row =mysqli_fetch_assoc($executequery);
     $payment=$row['SUM'];
@@ -149,7 +161,7 @@ if (isset($_COOKIE['action'])) {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Products</a>
+                    <a class="navbar-brand" href="choice.php">Products</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -187,7 +199,7 @@ if (isset($_COOKIE['action'])) {
 <div class="jumbotron"  style="background-color: white;">
 <blockquote>Transaction details</blockquote>
 <?php 
-$qry1="SELECT * FROM orders WHERE userid='$id'";
+$qry1="SELECT * FROM cart WHERE userid='$id'";
 $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 $numrows=mysqli_num_rows($executequery);
     while($row =mysqli_fetch_assoc($executequery))
@@ -201,9 +213,14 @@ echo'<div class="row">'.($i+1).'<p><br> '.$osolutions[$i]['oprocessor'].'<br>'.$
 
     } 
 echo '<h3>Total Cost: Rs '.$payment.'</h3>';
-    ?>
+    for($i=0;$i<$numrows;$i++){
+    $meraid=$osolutions[$i]['cartid'];
+    $qry1="DELETE FROM cart WHERE cartid=$meraid";
+    $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+
+    }?>
 <div style="text-align:center;">
-<button onclick="myFunction()" id="print" class="btn btn-primary" >Print Receipt</button>
+<button onclick="myFunction()" id="print" class="btn btn-primary noprint" >Print Receipt</button>
 </div>
 
 
@@ -217,13 +234,13 @@ $(function()
     $('#print').on("click",function()
 
     {
-$(".no-print").css('display', 'none');
+// $(".no-print").css('display', 'none');
 
 window.print();
 
 location.reload();
 
-    })
+    });
 
 
 

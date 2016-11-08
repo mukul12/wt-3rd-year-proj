@@ -150,13 +150,13 @@ $email=$_SESSION['email'];
                         <a class="page-scroll" href="index.php">HOME</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Product</a>
+                        <a class="page-scroll" href="mycart.php">Cart</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">contact us</a>
+                        <a class="page-scroll" href="contactus.php">Contact us</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Team</a>
+                        <a class="page-scroll" href="index.php">Team</a>
                     </li>
                     
                     <li>
@@ -713,10 +713,10 @@ $(document).ready(function(){
                 <div class="col-xs-5 col-xs-offset-1 col-sm-3 col-sm-offset-1">
                     <h5>Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php">About</a></li>
+                        <li><a href="choice.php">Products</a></li>
+                        <li><a href="contactus.php">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-6 col-sm-4">
