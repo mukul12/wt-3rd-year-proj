@@ -136,7 +136,13 @@ if (isset($_COOKIE['action'])) {
     $row =mysqli_fetch_assoc($executequery);
     $payment=$row['SUM'];
     $money=$money-$payment;
-
+    $qry1="SELECT * FROM discount WHERE userid='$id'";
+    $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+    $row =mysqli_fetch_assoc($executequery);
+   $discountprice=$row['sum'];
+  if(!is_null($discountprice)){
+    $payment=$discountprice;
+  }
     $qry1="UPDATE husers SET usrcredit='$money' WHERE userid='$id'";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 
@@ -146,6 +152,13 @@ if (isset($_COOKIE['action'])) {
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
     $row =mysqli_fetch_assoc($executequery);
     $payment=$row['SUM'];
+     $qry1="SELECT * FROM discount WHERE userid='$id'";
+    $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+    $row =mysqli_fetch_assoc($executequery);
+   $discountprice=$row['sum'];
+  if(!is_null($discountprice)){
+    $payment=$discountprice;
+  }
     $money=$money-$payment;
 
    
@@ -204,8 +217,11 @@ $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 $numrows=mysqli_num_rows($executequery);
     while($row =mysqli_fetch_assoc($executequery))
       $osolutions[] = $row;
-echo '
-<p><h6>'.$fname.' '.$lname.'<br>'.$address.'<br>'.$contact.'</h6><br> New balance = Rs '.$money.'<br> Order Placed.</p>';
+echo '<p>Seller:<br><h6>HardWare.Inc <br>A-42, Swapnashilp Society,<br>
+                      Mahant Road, VileParle(East)<br>
+                      Mumbai-400057,<br>
+                      India<br><br> </h6></p>
+<p>Buyer:<br><h6>'.$fname.' '.$lname.'<br>'.$address.'<br>'.$contact.'</h6><br> New balance = Rs '.$money.'<br> Order Placed.</p>';
 
 for($i=0;$i<$numrows;$i++)
 {
@@ -218,7 +234,10 @@ echo '<h3>Total Cost: Rs '.$payment.'</h3>';
     $qry1="DELETE FROM cart WHERE cartid=$meraid";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 
-    }?>
+    }
+$qry1="DELETE FROM discount WHERE userid=$id";
+$executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+    ?>
 <div style="text-align:center;">
 <button onclick="myFunction()" id="print" class="btn btn-primary noprint" >Print Receipt</button>
 </div>

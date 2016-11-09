@@ -78,7 +78,7 @@ if(is_null($email))
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Products</a>
+                    <a class="navbar-brand" href="choice.php">Products</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -188,7 +188,23 @@ $numrows=mysqli_num_rows($executequery);
                 <td>'.$cartsolutions[$i]['ordercost'].'</td>
               </tr>';
               $sum=$sum+$cartsolutions[$i]['ordercost'];
-                }}   ?>                    
+                }}  
+                if(isset($_POST['input01']) )
+                {
+                  $disccost=(int)($sum/10);
+                  $code=$_POST['input01'];
+                  echo $code;
+                  $mycode="mukulisgod";
+                  if(!strcasecmp($code,$mycode) && !isset($_COOKIE['Discount'])){
+                    $sum=$sum-$disccost;
+                    setcookie('Discount', 1, time()+86400, '/');
+                    $qry1="INSERT INTO discount values (NULL,$sum,$id)";
+                    $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+                  }
+                }
+
+
+                 ?>                    
               <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -201,7 +217,7 @@ $numrows=mysqli_num_rows($executequery);
             </tbody>
           </table>
           
-          <form class="form-horizontal">
+          <form class="form-horizontal" method="POST" action="mycart.php">
         <fieldset>    
           
           
@@ -218,7 +234,7 @@ $numrows=mysqli_num_rows($executequery);
           <div class="control-group">
             <label for="input01" class="control-label">Discount code: </label>
             <div class="controls">
-              <input id="input01" class="input-xlarge" placeholder="Enter your coupon here" type="text">
+              <input id="input01" name="input01" class="input-xlarge" placeholder="Enter your coupon here" type="text">
               <p class="help-block">You can only use one discount code at a time</p>
             </div>
           </div>
@@ -237,7 +253,7 @@ $numrows=mysqli_num_rows($executequery);
           <div class="control-group">
             <label for="input01" class="control-label">Gift voucher: </label>
             <div class="controls">
-              <input id="input01" class="input-xlarge" placeholder="Enter your gift voucher here" type="text">
+              <input id="input02" name="input02" class="input-xlarge" placeholder="Enter your gift voucher here" type="text value="">
               <p class="help-block">You can use multiple gift vouchers at a time</p>
             </div>
           </div>
@@ -248,7 +264,7 @@ $numrows=mysqli_num_rows($executequery);
 
           <div class="row">
           <div class="col-md-5 col-xs-6">
-            <a class="btn btn-primary" id="Update" name="Update">Update</a>
+            <button class="btn btn-primary" id="Update" type="submit" name="Update">Update</button>
             </div>        
             <div class="col-md-2 col-md-5 col-xs-6">
             <a href="choice.php" class="btn btn-primary" id="shop" name="shop">Continue shopping</a>
@@ -413,6 +429,43 @@ $numrows=mysqli_num_rows($executequery);
 // //window.location.href=window.location.href;
 // }
 // });
+
+// $('#Update').on('click',function()
+// {
+// var sum=<?php //echo $sum; ?>;
+// var disccost=(int)(sum/10);
+// var code= input01.val();
+// var disccode= "mukulisgod";
+// if(code==disccode){
+// sum=sum-disccost;
+// var urlString="mynewcost="+sum;
+//       $.ajax
+//       ({
+//   url: "mycart.php",
+
+//   type : "POST",
+//   cache : false,
+//   data : urlString,
+//   success: function(response)
+//   {
+//     window.location="mycart.php";
+//   //alert(response);
+//   //window.location="getjsondata.php";
+//   },
+//   complete: function(response)
+//   {
+//     alert("Discount Added");
+//     response;
+//   },
+//   error: function(response)
+//   {
+//     alert(response+"TERA AJAX FAILED HAI BOSS");
+//   }
+
+//   });
+// }
+
+// });
     
   $(document).on('click', '#check_button', function(e){
       var id= parseInt(e.currentTarget.name);
@@ -427,6 +480,7 @@ $numrows=mysqli_num_rows($executequery);
   data : urlString,
   success: function(response)
   {
+    window.location="mycart.php";
   //alert(response);
   //window.location="getjsondata.php";
   },
@@ -441,9 +495,8 @@ $numrows=mysqli_num_rows($executequery);
   }
 
   });
-window.location="mycart.php";
 
-location.reload();
+
   });
 
   

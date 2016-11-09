@@ -8,7 +8,7 @@ $email=$_SESSION['email'];
 		$i = mysqli_escape_string($conn, $i);
 		$q = "DELETE FROM cart WHERE cartid = $i";
 		$executequery=mysqli_query($conn,$q) or die(mysqli_errno($conn));
-		echo '<script type="text/javascript">location.reload();</script>';
+	
 	
 	}
  ?>

@@ -81,19 +81,26 @@ $email=$_SESSION['email'];
                         <a href="#page-top"></a>
                     </li>
                      
-                    
+                    <?php if(isset($email))
+                    {
+
+                    echo '<li style="position: relative; top:15px; font-size: 15px; color: white;"><b>Welcome</b> '.$email.'</li> ';
+                     }
+
+                    ?>
                     
                     <li>
-                        <a class="" href="index.php">home</a>
+                        <a class="" href="index.php">Home</a>
                     </li>
                     <li>
                         <a class="" href="choice.php">Product</a>
                     </li>
                     <li>
-                        <a class="" href="contactus.php">contact us</a>
+                        <a class="" href="contactus.php">Contact Us</a>
                     </li>
                     
-                    <li>
+                   <?php  if(!isset($email)){
+                    echo '<li>
                       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login-modal">
               <span class="glyphicon glyphicon-user"></span> Login
         </button>
@@ -110,7 +117,16 @@ $email=$_SESSION['email'];
         </button>
           
           
-        </li>
+        </li>'; }
+else
+{
+    echo '<li>
+                            <button onclick= "window.location=\'logout.php\';" class="btn btn-info btn-lg">
+                                Log out
+                            </button>
+                        </li>';
+}
+        ?>
                 </ul>
                
             </div>
@@ -149,7 +165,7 @@ $email=$_SESSION['email'];
           <form role="form" name="loginform" id="loginform" method="POST" action="login.php">
             <div class="form-group">
               <label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
-              <input type="text" class="form-control" name= "email" id="email" placeholder="Enter email" onkeypress="validate()">
+              <input type="text" class="form-control" name= "email" id="email" placeholder="Enter email" onclick="validate()">
             </div>
             <div class="form-group">
               <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
@@ -172,10 +188,7 @@ $email=$_SESSION['email'];
 </div>
  
 <script>
-function validate()
-{
-    var a=/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
-}
+
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
@@ -209,7 +222,8 @@ $(document).ready(function(){
           <form role="form" name="registerform" id="registerform" method="POST" action="signup.php">
             <div class="form-group">
               <label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
-              <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
+              <input type="text" class="form-control" name="email" id="email" placeholder="Enter email" onclick="validate()">
+              <h2 id='result'></h2>
             </div>
             <div class="form-group">
               <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
@@ -232,15 +246,35 @@ $(document).ready(function(){
 </div>
  
 <script>
+
+
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
     });
 });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+     function validateEmail(email) {
+  var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+  return re.test(email);
+}
 
- 
+function validate() {
+  $("#result").text("");
+  var email = $("#email").val();
+  if (validateEmail(email)) {
+    $("#result").text(email + " is valid :)");
+    $("#result").css("color", "green");
+  } else {
+    $("#result").text(email + " is not valid :(");
+    $("#result").css("color", "red");
+  }
+  return false;
+}
     
+</script>
+ 
     
     
     
@@ -397,22 +431,8 @@ $(document).ready(function(){
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="img/team/1.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Amanda</h4>
-                        <p class="text-muted">Lead Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
+               
+                <div class="col-sm-6">
                     <div class="team-member">
                         <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
                         <h4>Manogya</h4>
@@ -427,9 +447,9 @@ $(document).ready(function(){
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="team-member">
-                        <img src="img/team/3.jpg" class="img-responsive img-circle" alt="">
+                        <img src="img/team/4.png" class="img-responsive img-circle" style="height:225px; width: 225px; " alt="">
                         <h4>Mukul</h4>
                         <p class="text-muted">Lead Developer</p>
                         <ul class="list-inline social-buttons">
@@ -488,10 +508,10 @@ $(document).ready(function(){
                 <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
                     <h5>Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="contactus.php">About</a></li>
+                        <li><a href="choice.php">Products</a></li>
+                        <li><a href="contactus.php">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-6 col-sm-5">

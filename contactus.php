@@ -8,8 +8,9 @@ $email=$_SESSION['email'];
 <html lang="en">
 
 <head>
-     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head 
          content must come *after* these tags -->
@@ -147,9 +148,11 @@ $email=$_SESSION['email'];
                     
                     
                     <li>
-                        <a class="page-scroll" href="index.php">HOME</a>
+                        <a class="page-scroll" href="index.php">Home</a>
                     </li>
+                    <li> <span style="position:relative;top:17px;left:7px" class="glyphicon glyphicon-shopping-cart"></span></li>
                     <li>
+
                         <a class="page-scroll" href="mycart.php">Cart</a>
                     </li>
                     <li>
@@ -238,8 +241,10 @@ $email=$_SESSION['email'];
     </div>
   </div>
 </div>
+
  
 <script>
+
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
@@ -294,7 +299,7 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
- 
+
 <script>
 $(document).ready(function(){
     $("#myBtn").click(function(){
@@ -402,7 +407,7 @@ $(document).ready(function(){
 
             </div>
             <div class="col-xs-12 col-sm-11 col-sm-offset-1">
-                Button group goes here
+                
             </div>
         </div>
 
@@ -450,55 +455,7 @@ $(document).ready(function(){
                     }
                 }
             },
-            phone: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your phone number'
-                    },
-                    phone: {
-                        country: 'US',
-                        message: 'Please supply a vaild phone number with area code'
-                    }
-                }
-            },
-            address: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your street address'
-                    }
-                }
-            },
-            city: {
-                validators: {
-                     stringLength: {
-                        min: 4,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select your state'
-                    }
-                }
-            },
-            zip: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your zip code'
-                    },
-                    zipCode: {
-                        country: 'US',
-                        message: 'Please supply a vaild zip code'
-                    }
-                }
-            },
+       
             comment: {
                 validators: {
                       stringLength: {
@@ -507,7 +464,7 @@ $(document).ready(function(){
                         message:'Please enter at least 10 characters and no more than 200'
                     },
                     notEmpty: {
-                        message: 'Please supply a description of your project'
+                        message: 'Please give us a valuable Feedback'
                     }
                     }
                 }
@@ -549,7 +506,7 @@ $(document).ready(function(){
   <div class="col-md-4 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+  <input  name="first_name" id="first_name" placeholder="First Name" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -561,7 +518,7 @@ $(document).ready(function(){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
+  <input name="last_name" id="last_name" placeholder="Last Name" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -572,7 +529,7 @@ $(document).ready(function(){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+  <input name="email" id="email" placeholder="E-Mail Address" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -585,7 +542,7 @@ $(document).ready(function(){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+  <input name="phone" id="phone" placeholder="(845)555-1212" class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -597,7 +554,7 @@ $(document).ready(function(){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="address" placeholder="Address" class="form-control" type="text">
+  <input name="address" id="address" placeholder="Address" class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -609,7 +566,7 @@ $(document).ready(function(){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="city" placeholder="city" class="form-control"  type="text">
+  <input name="city" id="city" placeholder="city" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -621,7 +578,7 @@ $(document).ready(function(){
     <div class="col-md-4 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="state" class="form-control selectpicker" >
+    <select name="state" id="state" class="form-control selectpicker" >
       <option value=" " >Please select your state</option>
       <option>Maharashtra</option>
       <option>Karnataka</option>
@@ -641,47 +598,19 @@ $(document).ready(function(){
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="zip" placeholder="Zip Code" class="form-control"  type="text">
+  <input name="zip" id="zip" placeholder="Zip Code" class="form-control"  type="text">
     </div>
 </div>
 </div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label">Website or domain name</label>  
-   <div class="col-md-4 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-  <input name="website" placeholder="Website or domain name" class="form-control" type="text">
-    </div>
-  </div>
-</div>
-
-<!-- radio checks -->
- <div class="form-group">
-                        <label class="col-md-4 control-label">Do you have hosting?</label>
-                        <div class="col-md-4">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="hosting" value="yes" /> Yes
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="hosting" value="no" /> No
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
 <!-- Text area -->
   
 <div class="form-group">
-  <label class="col-md-4 control-label">Project Description</label>
+  <label class="col-md-4 control-label">Feedback</label>
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-            <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
+            <textarea class="form-control" name="comment" id="comment" placeholder="Your Comments"></textarea>
   </div>
   </div>
 </div>

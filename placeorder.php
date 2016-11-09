@@ -26,6 +26,13 @@ $connect=mysqli_connect("localhost","root","","hardware") or die("Connection Err
   $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
   $row =mysqli_fetch_assoc($executequery);
   $payment=$row['SUM'];
+  $qry1="SELECT * FROM discount WHERE userid='$id'";
+  $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+  $row =mysqli_fetch_assoc($executequery);
+  $discountprice=$row['sum'];
+  if(!is_null($discountprice)){
+    $payment=$discountprice;
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -151,7 +158,7 @@ $connect=mysqli_connect("localhost","root","","hardware") or die("Connection Err
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Products</a>
+                    <a class="navbar-brand" href="choice.php">Products</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">

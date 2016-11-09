@@ -296,7 +296,7 @@ $numrows=mysqli_num_rows($executequery);
 <div class="content">
 
 <div class="container-fluid"><?php
-$id = rand(2,6); 
+$id = rand(3,6); 
 $cost=$hsolutions[$hdd_no]['hprice']+$rsolutions[$ram_no]['rprice'];
 //echo $cost;
 $cost1=$cost;

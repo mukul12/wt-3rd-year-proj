@@ -698,7 +698,7 @@ $(document).ready(function(){
                     <ul class="list-unstyled">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Products</a></li>
+                        <li><a href="choice.php">Products</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>

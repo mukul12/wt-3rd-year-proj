@@ -24,6 +24,7 @@
 	
 	color: floralwhite;
     background-image:url(jumbotron-log.jpg); 
+	background-repeat: no-repeat;
 
 }
 address{
