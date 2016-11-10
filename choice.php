@@ -279,7 +279,7 @@ if(is_null($email))
                     </li>
             
                     <li>
-                        <a class="page-scroll" href="#about">contact us</a>
+                        <a class="page-scroll" href="contactus.php">contact us</a>
                     </li>
                     <li>
                     <span style="position:relative;top:17px;left:7px" class="glyphicon glyphicon-shopping-cart"></span>

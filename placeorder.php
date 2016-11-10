@@ -13,7 +13,7 @@ if(is_null($email))
 
 <?php 
 
-$connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
+$connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","u602930306_hardw") or die("Connection Error");
 
   $qry1="SELECT * FROM husers WHERE usremail='$email'";
 

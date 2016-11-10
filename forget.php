@@ -363,14 +363,14 @@ label:hover:before {
 				<div class="login-group">
 					<div class="form-group">
 						<label for="fp_email" class="sr-only">Email address</label>
-						<input type="text" class="form-control" id="fp_email" name="email" placeholder="email address">
+						<input type="text" class="form-control" id="email" name="email" placeholder="email address">
 					</div>
 				</div>
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 			</div>
 			<div class="etc-login-form">
-				<p>already have an account? <a href="#">login here</a></p>
-				<p>new user? <a href="#">create new account</a></p>
+				<p>Back to home-page?<a href="index.php">Redirect</a></p>
+				
 			</div>
 		</form>
 	</div>

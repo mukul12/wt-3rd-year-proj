@@ -6,7 +6,7 @@ $email=$_POST['email'];
 $password=$_POST['password'];
 //$password=md5($password);
 if($email && $password){
-	$connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
+	$connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","u602930306_hardw") or die("Connection Error");
 	$query=mysqli_query($connect, "SELECT * FROM husers WHERE usremail='$email'");
 	$row=mysqli_fetch_assoc($query);
 	

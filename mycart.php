@@ -123,7 +123,7 @@ if(is_null($email))
      <div class="col-md-12">
 
      <?php
-     $connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
+     $connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","u602930306_hardw") or die("Connection Error");
 
   $qry1="SELECT * FROM husers WHERE usremail='$email'";
 
@@ -193,13 +193,17 @@ $numrows=mysqli_num_rows($executequery);
                 {
                   $disccost=(int)($sum/10);
                   $code=$_POST['input01'];
-                  echo $code;
+                 // echo $code;
                   $mycode="mukulisgod";
                   if(!strcasecmp($code,$mycode) && !isset($_COOKIE['Discount'])){
                     $sum=$sum-$disccost;
                     setcookie('Discount', 1, time()+86400, '/');
                     $qry1="INSERT INTO discount values (NULL,$sum,$id)";
                     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
+                  }
+                  else if(!strcasecmp($code,$mycode) && isset($_COOKIE['Discount']) )
+                  {
+                    $sum=$sum-$disccost;
                   }
                 }
 
@@ -266,7 +270,7 @@ $numrows=mysqli_num_rows($executequery);
           <div class="col-md-5 col-xs-6">
             <button class="btn btn-primary" id="Update" type="submit" name="Update">Update</button>
             </div>        
-            <div class="col-md-2 col-md-5 col-xs-6">
+            <div class="col-xs-6" style="text-align:right;">
             <a href="choice.php" class="btn btn-primary" id="shop" name="shop">Continue shopping</a>
             </div>        
             

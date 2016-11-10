@@ -219,7 +219,7 @@ $(document).ready(function(){
       font-size: 30px;"><span class="glyphicon glyphicon-lock"></span> Sign-Up</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" name="registerform" id="registerform" method="POST" action="signup.php">
+          <form role="form" name="registerform" id="registerform" method="POST" action="signup.php" onsubmit="return validateform()">
             <div class="form-group">
               <label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
               <input type="text" class="form-control" name="email" id="email" placeholder="Enter email" onclick="validate()">
@@ -255,26 +255,38 @@ $(document).ready(function(){
 });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-     function validateEmail(email) {
-  var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-  return re.test(email);
-}
+//      function validateEmail(email) {
+//   var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+//   return re.test(email);
+// }
 
-function validate() {
-  $("#result").text("");
-  var email = $("#email").val();
-  if (validateEmail(email)) {
-    $("#result").text(email + " is valid :)");
-    $("#result").css("color", "green");
-  } else {
-    $("#result").text(email + " is not valid :(");
-    $("#result").css("color", "red");
-  }
-  return false;
-}
+// function validate() {
+//   $("#result").text("");
+//   var email = $("#email").val();
+//   if (validateEmail(email)) {
+//     $("#result").text(email + " is valid :)");
+//     $("#result").css("color", "green");
+//   } else {
+//     $("#result").text(email + " is not valid :(");
+//     $("#result").css("color", "red");
+//   }
+//   return false;
+// }
     
 </script>
- 
+ <script type="text/javascript">
+   
+   function validateform()
+   {
+    var x=document.forms["registerform"]["email"].value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if( atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length | x.charAt(atpos+1)=="." || x.charAt(atpos-1)=="."){
+      alert("Invalid Email ID");
+      return false;
+    }
+   }
+ </script>
     
     
     
@@ -434,7 +446,7 @@ function validate() {
                
                 <div class="col-sm-6">
                     <div class="team-member">
-                        <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <img src="img/team/5.jpg" class="img-responsive img-circle" style="height:225px; width: 225px;" alt="">
                         <h4>Manogya</h4>
                         <p class="text-muted">Lead Marketer</p>
                         <ul class="list-inline social-buttons">

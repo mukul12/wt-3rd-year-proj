@@ -89,7 +89,7 @@ if(is_null($email))
 
 <?php 
 
-$connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
+$connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","u602930306_hardw") or die("Connection Error");
 $fname=$_POST['fname'];
 
 $lname=$_POST['lname'];
@@ -135,7 +135,7 @@ if (isset($_COOKIE['action'])) {
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
     $row =mysqli_fetch_assoc($executequery);
     $payment=$row['SUM'];
-    $money=$money-$payment;
+    
     $qry1="SELECT * FROM discount WHERE userid='$id'";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
     $row =mysqli_fetch_assoc($executequery);
@@ -143,6 +143,7 @@ if (isset($_COOKIE['action'])) {
   if(!is_null($discountprice)){
     $payment=$discountprice;
   }
+  $money=$money-$payment;
     $qry1="UPDATE husers SET usrcredit='$money' WHERE userid='$id'";
     $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 
@@ -240,6 +241,7 @@ $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
     ?>
 <div style="text-align:center;">
 <button onclick="myFunction()" id="print" class="btn btn-primary noprint" >Print Receipt</button>
+<p class="noprint">DO NOT REFRESH BEFORE PRINTING</p>
 </div>
 
 
@@ -257,7 +259,7 @@ $(function()
 
 window.print();
 
-location.reload();
+
 
     });
 

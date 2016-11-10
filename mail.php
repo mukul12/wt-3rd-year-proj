@@ -10,7 +10,7 @@ $email=$_SESSION['email'];
 
 $email1=$_POST['email'];
 
-$connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
+$connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","u602930306_hardw") or die("Connection Error");
 $qry1="SELECT * from husers where usremail='$email1'";
 $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
   $row = mysqli_fetch_assoc($executequery);
@@ -19,8 +19,8 @@ $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 
  // echo $password;
 
-//$connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
-	$checkquery="SELECT * FROM hardware.husers WHERE usremail='$email'";
+//$connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","	u602930306_hardw") or die("Connection Error");
+	$checkquery="SELECT * FROM husers WHERE usremail='$email'";
 	//$executequery=mysqli_query($connect,$checkquery) or die(mysqli_errno($connect));
 	//$numrows=mysqli_num_rows($executequery);
 	//echo $numrows;
@@ -30,7 +30,7 @@ $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
 
 
 //composer require phpmailer;
-require '.\PHPMailer-master\PHPMailerAutoload.php';
+require './PHPMailer-master/PHPMailerAutoload.php';
 
 $mail = new PHPMailer();
 //echo "MG";
@@ -53,7 +53,7 @@ $mail->Port = 587;
 $mail->From = "manomukul@gmail.com";
 $mail->FromName = "manoooo";
 
-$mail->addAddress($email, "manooo");
+$mail->addAddress($email1, "manooo");
 
 $mail->isHTML(true);
 

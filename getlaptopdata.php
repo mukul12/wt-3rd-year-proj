@@ -22,7 +22,7 @@ $conn = mysqli_connect($servername, $username, $password, $db);
 
  $cost = mysqli_escape_string($conn, $cost);
   $i = mysqli_escape_string($conn, $i);
- $connect=mysqli_connect("localhost","root","","hardware") or die("Connection Error");
+ $connect=mysqli_connect("mysql.hostinger.in","u602930306_root","mukul123","u602930306_hardw") or die("Connection Error");
 $qry1="SELECT * from husers where usremail='$email'";
 $executequery=mysqli_query($connect,$qry1) or die(mysqli_errno($connect));
   $row = mysqli_fetch_assoc($executequery);

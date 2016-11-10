@@ -145,6 +145,13 @@ $email=$_SESSION['email'];
                         <a href="#page-top"></a>
                     </li>
                      
+                    <?php if(isset($email))
+                    {
+
+                    echo '<li style="position: relative; top:15px; font-size: 15px; color: white;"><b>Welcome</b> '.$email.'</li> ';
+                     }
+
+                    ?>
                     
                     
                     <li>
@@ -162,24 +169,34 @@ $email=$_SESSION['email'];
                         <a class="page-scroll" href="index.php">Team</a>
                     </li>
                     
-                    <li>
-                  
-        
-         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login-modal" >
+               <?php  if(!isset($email)){
+                    echo '<li>
+                      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login-modal">
               <span class="glyphicon glyphicon-user"></span> Login
         </button>
+                    </li>
+                    
+                    <li>
           
           
         </li>
-        
-        <li>
+         <li>
         
          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login-modal1">
               <span class="glyphicon glyphicon-user"></span> SignUp
         </button>
           
           
-        </li>
+        </li>'; }
+else
+{
+    echo '<li>
+                            <button onclick= "window.location=\'logout.php\';" class="btn btn-info btn-lg">
+                                Log out
+                            </button>
+                        </li>';
+}
+        ?>
                 </ul>
                
             </div>
@@ -275,7 +292,7 @@ $(document).ready(function(){
       font-size: 30px;"><span class="glyphicon glyphicon-lock"></span> Sign-Up</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" name="registerform" id="registerform" method="POST" action="signup.php">
+          <form role="form" name="registerform" id="registerform" method="POST" action="signup.php" onsubmit="return validateform()">
             <div class="form-group">
               <label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
               <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
@@ -310,7 +327,19 @@ $(document).ready(function(){
 
 
 
-
+<script type="text/javascript">
+   
+   function validateform()
+   {
+    var x=document.forms["registerform"]["email"].value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if( atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length | x.charAt(atpos+1)=="." || x.charAt(atpos-1)=="."){
+      alert("Invalid Email ID");
+      return false;
+    }
+   }
+ </script>
 
 
 
